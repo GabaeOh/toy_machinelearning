@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Recurrence Of Surgery Prediction</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1>Recurrence Of Surgery Prediction</h1>
+
+        <!-- Form -->
+        <form id="predictionForm" class="mt-4">
+            <!-- Hospitalization period Input -->
+            <div class="mb-3">
+                <label for="HospitalizationperiodInput" class="form-label">입원기간:</label>
+                <input type="text" class="form-control" id="HospitalizationperiodInput" name="입원기간" required>
+            </div>
+
+            <!-- Pain period Input -->
+            <div class="mb-3">
+                <label for="PainperiodInput" class="form-label">통증기간:</label>
+                <input type="text" class="form-control" id="PainperiodInput" name="통증기간" required>
+            </div>
+
+             <!-- age Input -->
+             <div class="mb-3">
+                <label for="ageInput" class="form-label">연령:</label>
+                <input type="text" class="form-control" id="ageInput" name="연령" required>
+            </div>
+
+             <!-- weight Input -->
+             <div class="mb-3">
+                <label for="weightInput" class="form-label">체중:</label>
+                <input type="text" class="form-control" id="weightInput" name="체중" required>
+            </div>
+
+             <!-- Large Lymphocyte Input -->
+             <div class="mb-3">
+                <label for="LargeLymphocyteInput" class="form-label">Large Lymphocyte:</label>
+                <input type="text" class="form-control" id="LargeLymphocyteInput" name="LargeLymphocyte" required>
+            </div>
+
+             <!-- surgical technique Input -->
+             <div class="mb-3">
+                <label for="surgicaltechniqueInput" class="form-label">수술기법:</label>
+                <input type="text" class="form-control" id="surgicaltechniqueInput" name="수술기법" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary" id="predict">Predict</button>
+        </form>
+
+        <!-- Result Display -->
+        <div id="resultDisplay" class="mt-4"></div>
+
+    </div>
+</body>
+<script>
+    // id : #, class :. , tag : 그대로 사용
+ let predictObject = document.querySelector('#predict')
+ predictObject.addEventListener('click', (event)=>{
+    event.preventDefault();  // submit 정지
+    let Hospitalizationperiod = document.querySelector('#HospitalizationperiodInput').value;
+    let Painperiod = document.querySelector('#PainperiodInput').value;
+    let age = document.querySelector('#ageInput').value;
+    let weight = document.querySelector('#weightInput').value;
+    let LargeLymphocyte = document.querySelector('#LargeLymphocyteInput').value;
+    let surgicaltechnique = document.querySelector('#surgicaltechniqueInput').value;
+
+    let request_dict = {"Hospitalizationperiod":Hospitalizationperiod
+                    , "Painperiod":Painperiod
+                    , "age":age
+                    , "weight":weight
+                    , "LargeLymphocyte":LargeLymphocyte
+                    , "surgicaltechnique":surgicaltechnique}
+                    ;
+
+    // console.log(`request_dict : ${request_dict}`);
+    // request backend and then return dict
+    fetch('http://127.0.0.1:8000/api_v1/mlmodelwithregression', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json'
+     },
+     body: JSON.stringify(request_dict)
+   })
+   .then(response => response.json())
+   .then(data => {
+     console.log(data)
+     // Display the result in the resultDisplay div
+     document.querySelector('#resultDisplay').innerHTML = `Patient pain level : ${data.Patient_pain_level}`;
+   })
+   .catch(error => console.error(error));
+
+ });
+</script>
+
+</html>
