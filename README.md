@@ -32,3 +32,12 @@
 
 ## ✔️분석 후  느낀점 
 - '결측치'를 어떻게 처리를 해야지 효율적인 분석이 될지 생각해보게 되는 프로젝트였다. 전처리하는 과정에서도 이중으로 동일한 작업이 진행되지 않게금 효율적으로 진행되는 순서에 대해서도 생각해볼수 있었다. 결론적으로 해당 프로젝트 덕분에 결측치를 처리하는 다양한 방법들을 알게 되었다.
+
+
+### ✔️ 사용기술 
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"/> <img
+src="https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white"/> <img
+src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white"/> <img
+src="https://img.shields.io/badge/Anaconda-44A833?style=for-the-badge&logo=Anaconda&logoColor=white"/> <img 
+src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white"/> <img 
+src="https://img.shields.io/badge/Google Cloud-4285F4?style=for-the-badge&logo=Google Cloud&logoColor=white"/>
